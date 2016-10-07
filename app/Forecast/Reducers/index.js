@@ -2,20 +2,16 @@ import * as Actions from '../Actions/index'
 
 export const initForecast = {
   isFetching: false,
-  days: []
+  days: [],
+  lat: "47.6038",
+  lon: "-122.3301"
 }
 
 export const forecast = (state = initForecast, action) => {
   switch (action.type) {
+    case Actions.GET_COORDINATES:
     case Actions.GET_FORECAST:
-      return Object.assign({},state,{
-        isFetching: true
-      })
     case Actions.PARSE_FORECAST:
-      return Object.assign({},state,{
-        isFetching: false,
-        days: action.payload
-      })
     default:
       return state
   }

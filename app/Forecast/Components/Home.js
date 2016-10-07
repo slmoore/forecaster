@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
-import Forecast from '../Components/Forecast'
+import Header from './Header'
+import Footer from './Footer'
+import Forecast from '../Containers/Forecast'
 
 
 class Home extends Component {
@@ -10,15 +12,13 @@ class Home extends Component {
 
   render () {
     return (
-      <div>{"This is Home"}
+      <div>
+        <Header />
         <Forecast />
+        <Footer />
       </div>
     )
   }
 }
 
 export default Home
-
-// mapStateToProps
-
-// mapDispatchToProps

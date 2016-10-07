@@ -23,7 +23,7 @@ const configureStore = function (preloadedState) {
       rootReducer,
       preloadedState,
       compose(
-        applyMiddleware(thunkMiddleware,logger),
+        applyMiddleware(thunkMiddleware, logger),
         window.devToolsExtension()
         )
     )

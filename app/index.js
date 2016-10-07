@@ -4,6 +4,10 @@ import { Provider } from 'react-redux'
 import { Router, browserHistory } from 'react-router'
 import Routes from './routes'
 import configureStore from './store'
+// app styles transformed by webpack
+import './Forecast/Styles/Main.scss'
+import './Forecast/Styles/Footer.scss'
+import './Forecast/Styles/Header.scss'
 
 
 const store = configureStore()
