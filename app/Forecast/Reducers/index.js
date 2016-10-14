@@ -9,9 +9,14 @@ export const initForecast = {
 
 export const forecast = (state = initForecast, action) => {
   switch (action.type) {
+
     case Actions.GET_COORDINATES:
+      return Object.assign({},state,action.payload)
+
     case Actions.GET_FORECAST:
+
     case Actions.PARSE_FORECAST:
+    
     default:
       return state
   }
