@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default () => 
-  <div className="footer"> {/*style={footerStyle}>*/}
+  <div className="footer">
     <div>Forecaster by Shawn Moore</div>
     <div>Powered by</div>
     <div>

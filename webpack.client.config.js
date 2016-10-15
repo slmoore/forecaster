@@ -1,15 +1,10 @@
 var webpack = require('webpack');
 require('dotenv').config();
 
-// development bundle
+// client-side bundle
 
 module.exports = {
-  entry: [
-    'webpack-dev-server/client?http://0.0.0.0:8080',
-    'webpack/hot/only-dev-server',
-    'babel-polyfill',
-    './app/index.js'
-  ],
+  entry: ['babel-polyfill','./app/index.js'],
   output: { 
     path: './dist',
     filename: 'bundle.js',
@@ -30,14 +25,18 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development'),
+      'process.env.NODE_ENV': JSON.stringify('production'),
       'process.env.GEOCODE': JSON.stringify(process.env.GEOCODE),
       'process.env.DARK_SKY': JSON.stringify(process.env.DARK_SKY)
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false,
+      },
+      output: {
+        comments: false,
+      }
     })
-  ],
-  devtool: 'source-map',
-  devServer: {
-    stats: { colors: true }
-  }
+  ]
 };
 

@@ -7,10 +7,10 @@
     "test": "mocha './app/**/*.spec.js' --compilers js:babel-core/register --reporter list",
     "test:watch": "npm test -- --watch",
     "cover": "nyc --reporter=html --reporter=text npm test",
-    "start": "NODE_ENV=development webpack-dev-server --inline --hot --config webpack.dev.config.js --content-base dist --history-api-fallback",
-    "prod": "NODE_ENV=production npm run build:client && npm run build:server && node server.bundle.js",
-    "build:client": "webpack --config webpack.dev.config.js",
-    "build:server": "webpack --config webpack.prod.config.js"
+    "start": "webpack-dev-server --inline --hot --config webpack.dev.config.js --content-base dist --history-api-fallback",
+    "prod": "npm run build:client && npm run build:server && node server.bundle.js",
+    "build:client": "webpack --config webpack.client.config.js",
+    "build:server": "webpack --config webpack.server.config.js"
   },
   "author": "Shawn Moore",
   "license": "ISC",

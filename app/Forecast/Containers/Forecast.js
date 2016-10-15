@@ -5,17 +5,16 @@ import Location from '../Components/Location'
 import FiveDays from '../Components/FiveDays'
 
 class Forecast extends Component {
+
   constructor (props) {
     super(props)
   }
 
   render () {
-    const { dispatch } = this.props
-
     return (
       <div>
-        <Location dispatch={dispatch} />
-        <FiveDays />
+        <Location dispatch={this.props.dispatch} />
+        <FiveDays {...this.props.forecast} />
       </div>
     )
   }
@@ -23,7 +22,7 @@ class Forecast extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    // simplify state to props here
+    ...state
   }
 }
 

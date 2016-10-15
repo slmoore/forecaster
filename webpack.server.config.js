@@ -45,7 +45,7 @@ module.exports = {
 
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production'),
+      'process.env.NODE_ENV': JSON.stringify('production'),
       'process.env.GEOCODE': JSON.stringify(process.env.GEOCODE),
       'process.env.DARK_SKY': JSON.stringify(process.env.DARK_SKY)
     }),

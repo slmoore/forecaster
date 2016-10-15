@@ -19,3 +19,7 @@ API docs and registration available at:
 
 [https://developer.forecast.io/](https://developer.forecast.io/)
 
+Environment Variables required:
+
+GEOCODE=[Google Geocode API key]
+DARK_SKY=[Dark Sky API key]

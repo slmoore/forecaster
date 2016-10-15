@@ -1,68 +1,127 @@
 import fetch from 'isomorphic-fetch'
+import store from '../../store'
 
 // Google Geocode API endpoint
 // https://maps.googleapis.com/maps/api/geocode/json?address=Seattle&key=[key]
 
 // DARK SKY API endpoint
 // https://api.darksky.net/forecast/[key]/[latitude],[longitude]
-//
-// default latitude and longitude
-// 47.6038,-122.3301
 
 const DARK_SKY = process.env.DARK_SKY
 const GEOCODE = process.env.GEOCODE
 
+// notify user that fetching is happening
 export const GET_COORDINATES = 'GET_COORDINATES'
-export const getCoordinates = (payload) => {
+export const getCoordinates = () => {
   return {
     type: GET_COORDINATES,
-    payload : {
+    payload: {
       isFetching: true
     }
   }
 }
 
-export const PARSE_COORDINATES = 'PARSE_COORDINATES'
-export const parseCoordinates = (payload) => {
-  return {
-    type: PARSE_COORDINATES,
-    payload
-  }
-}
-
-export const GET_FORECAST = 'GET_FORECAST'
-export const getForecast = () => {
-  return {
-    type: GET_FORECAST
-  }
-}
-
+// separate the forecast
 export const PARSE_FORECAST = 'PARSE_FORECAST'
-export const parseForecast = (payload) => {
+export const parseForecast = (forecast) => {
   return {
     type: PARSE_FORECAST,
-    payload
+    payload: {
+      isFetching: false,
+      ...forecast
+    }
   }
 }
 
-export const coordinatesRequest = (googleKey,address,dispatch) => {
+// notify of an error
+export const FETCH_ERROR = 'FETCH_ERROR'
+export const fetchError = (error) => {
+  return {
+    type: FETCH_ERROR,
+    payload: {
+      isFetching: false,
+      error
+    }
+  }
+}
+
+// fetch location coordinates
+export const coordinatesRequest = (address = 'Seattle') => {
   return (dispatch) => {
-    // https://maps.googleapis.com/maps/api/geocode/json?address=Seattle&key=[key]
+    // notify user that requests are running
+    dispatch(getCoordinates())
+
+    if (address.location) {
+      address = address.location
+    }
+
     return (
-      fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${googleKey}`)
+      fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${GEOCODE}`)
       .then(response => response.json())
-      .then(coordinates => console.log(coordinates)) // dispatch(weatherRequest(coordinates)))
-      .catch(err => console.log(err))
+      .then(data => {
+        let coordinates = {}
+        // default coordinates (Seattle)
+        coordinates.lat = 47.6062095
+        coordinates.lng = -122.3320708
+
+        try {
+          // return the first possible coordinates from the list
+          coordinates.lat = data.results[0].geometry.location.lat
+          coordinates.lng = data.results[0].geometry.location.lng
+        } catch(e) {
+          console.log("Longitude and latitude not found.")
+        }
+
+        dispatch(weatherRequest(coordinates))
+      })
+      .catch(err => dispatch(fetchError(err)))
     )
   }
 }
 
-export const weatherRequest = (darkSkyKey,coordinates,dispatch) => {
-  // https://api.darksky.net/forecast/[key]/[latitude],[longitude]
-  return (dispatch) => {
-    // return fetch weather...
+// separate darksky data
+const buildForecast = (weather) => {
+  let current = {}
+  let days = []
+  let alerts = []
+
+  try {
+    current = weather.currently
+    days = weather.daily.data
+    alerts = weather.alerts
+    store.dispatch(
+      parseForecast({
+        current,
+        days,
+        alerts
+      })
+    )
+  } catch(e) {
+    console.log("Weather not found. "+e.message)
+    store.dispatch(fetchError(e))
   }
 }
 
+// jsonp weather callback
+window.darkSkyCallback = (weather) => {
+  buildForecast(weather)
+}
 
+// request that bypasses CORS requirements using JSONP
+const requestJSONP = (url) => {
+  let head = document.getElementsByTagName('head')[0]
+  let script = document.createElement('script')
+  script.src = url
+  script.addEventListener("load", (e) => {
+    e.target.remove()
+  })
+  head.insertBefore(script, null)
+}
 
+// initiate darksky request
+export const weatherRequest = (coordinates) => {
+  return (dispatch) => {
+    let url = `https://api.darksky.net/forecast/${DARK_SKY}/${coordinates.lat},${coordinates.lng}?callback=darkSkyCallback`
+    requestJSONP(url)
+  }
+}

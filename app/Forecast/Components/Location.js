@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Field, reduxForm } from 'redux-form'
-import { getCoordinates } from '../Actions/index'
+import { coordinatesRequest } from '../Actions/index'
 
 // Customize Field and Error Display
 const renderInput = (field) => {
@@ -35,7 +35,7 @@ class Location extends Component {
   }
 
   handleDispatch (formValues) {
-    this.props.dispatch(getCoordinates(formValues))
+    this.props.dispatch(coordinatesRequest(formValues))
   }
 
   render () {
