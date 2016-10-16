@@ -10,7 +10,8 @@ import rootReducer from './combinedReducers'
 const configureStore = function (preloadedState) {
   let logger = createLogger()
 
-  if (process.env.NODE_ENV === 'production') {
+  if (process.env.NODE_ENV === 'production' || 
+      process.env.NODE_ENV === 'test') {
     return createStore(
       rootReducer,
       preloadedState,
