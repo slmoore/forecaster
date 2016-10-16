@@ -3,7 +3,7 @@
 
 ## Live Site
 
-[Live Forecaster](...)
+[Live Forecaster](https://forecaster-darksky.herokuapp.com/)
 
 ## Build Instructions
 
@@ -20,10 +20,10 @@
 
     - ***Unless port 8080 is already in use, it can be left as 8080.***
   5. You're done! So now you can run any of the following commands:
-    - `npm start # run in development environment` (visit http://localhost:8080)
-    - `npm run prod # run from node server` (visit http://localhost:8080)
+    - `npm run dev # run in development environment` (visit http://localhost:8080)
     - `npm run test # run unit tests`
     - `npm run cover # run unit test coverage report` (html version generated inside /coverage/index.html)
+    - `npm start # run from node server` (visit http://localhost:8080)
 
   **This application accesses the environment variables using node, so it does not run statically.**
 
