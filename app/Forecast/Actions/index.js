@@ -16,12 +16,24 @@ export const getCoordinates = () => {
   return {
     type: GET_COORDINATES,
     payload: {
+      first: false,
       isFetching: true
     }
   }
 }
 
-// separate the forecast
+// send the coordinates
+export const PARSE_COORDINATES = 'PARSE_COORDINATES'
+export const parseCoordinates = (coordinates) => {
+  return {
+    type: PARSE_COORDINATES,
+    payload: {
+      ...coordinates
+    }
+  }
+}
+
+// send the forecast
 export const PARSE_FORECAST = 'PARSE_FORECAST'
 export const parseForecast = (forecast) => {
   return {
@@ -47,7 +59,7 @@ export const fetchError = (error) => {
 
 // fetch location coordinates
 export const coordinatesRequest = (address = 'Seattle') => {
-  return (dispatch) => {
+  return (dispatch,getState) => {
     // notify user that requests are running
     dispatch(getCoordinates())
 
@@ -63,16 +75,28 @@ export const coordinatesRequest = (address = 'Seattle') => {
         // default coordinates (Seattle)
         coordinates.lat = 47.6062095
         coordinates.lng = -122.3320708
+        coordinates.fa = "Seattle, WA"
 
         try {
           // return the first possible coordinates from the list
           coordinates.lat = data.results[0].geometry.location.lat
           coordinates.lng = data.results[0].geometry.location.lng
+          coordinates.fa = data.results[0].formatted_address
+          // same address - skip weather request
+          if (coordinates.fa === getState().forecast.formatted_address) {
+            dispatch(parseForecast({
+              current: getState().forecast.current,
+              days: getState().forecast.days,
+              alerts: getState().forecast.alerts
+            }))
+          } else {
+            dispatch(parseCoordinates(coordinates))
+            dispatch(weatherRequest(coordinates))
+          }
         } catch(e) {
           console.log("Longitude and latitude not found.")
+          dispatch(fetchError(e))
         }
-
-        dispatch(weatherRequest(coordinates))
       })
       .catch(err => dispatch(fetchError(err)))
     )

@@ -6,8 +6,9 @@ import Routes from './routes'
 import store from './store'
 // app styles transformed by webpack
 import './Forecast/Styles/Main.scss'
-import './Forecast/Styles/Footer.scss'
-import './Forecast/Styles/Header.scss'
+import './Forecast/Styles/Location.scss'
+import './Forecast/Styles/FiveDays.scss'
+import './Forecast/Styles/Responsive.scss'
 
 render(
   <Provider store={store}>

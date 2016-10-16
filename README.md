@@ -19,6 +19,8 @@ API docs and registration available at:
 
 [https://developer.forecast.io/](https://developer.forecast.io/)
 
+Location Coordinates use Google Maps API
+
 Environment Variables required:
 
 GEOCODE=[Google Geocode API key]

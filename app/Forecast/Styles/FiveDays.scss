@@ -1,0 +1,80 @@
+$spacing: 100px;
+
+.forecastBlock {
+  animation-duration: 2s;
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+  padding-top: $spacing;
+  padding-bottom: 150px;
+
+  h2 {
+    margin-bottom: 30px;
+  }
+
+  .address a {
+    color: black;
+  }
+
+  .day {
+    border-radius: 2px;
+    font-size: 12px;
+    margin-bottom: 10px;
+    width: 230px;
+    height: 180px;
+
+    div {
+      padding-bottom: 10px;
+    }
+  }
+
+  .dayDate {
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .fiveBlock {
+    margin-top: $spacing;
+  }
+
+  .list-inline li {
+      vertical-align: bottom;
+  }
+
+  .alertSingle {
+    margin-top: 10px;
+
+    .alertTitle {
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    .alertDescription {
+      margin: auto;
+      max-width: 500px;
+      padding: 0px 10px;
+    }
+  }
+}
+
+.spinnerBlock {
+  margin-top: $spacing;
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+

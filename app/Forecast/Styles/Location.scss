@@ -1,0 +1,65 @@
+$red: #ef3535;
+$blue: #5bc0de;
+$gray: #d5e7ec;
+
+.formLocation {
+
+  .formError {
+    color: $red;
+    font-style: italic;
+    font-size: 95%;
+    min-height: 25px;
+    vertical-align: bottom;
+  }
+
+  button {
+    border-radius: 2px;
+  }
+  
+  input {
+    border: none;
+    border-bottom: 1px black dotted;
+    color: $blue;
+    font-size: 39px;
+    max-width: 300px;
+  }
+
+  .inputError {
+    border-bottom: 1px $red dotted;
+    color: $red;
+  }
+
+  input:focus,
+  input:active,
+  button:focus,
+  button:active {
+    outline: none;
+  }
+
+  *:not(h1) {
+    margin-top: 10px;
+  }
+
+  h1 {
+    margin-top: 0px;
+  }
+
+  /* input placeholder text */
+  ::-webkit-input-placeholder {
+    color: $gray;
+  }
+
+  ::-moz-placeholder {
+    color: $gray;
+  }
+
+  :-ms-input-placeholder {
+    color: $gray;
+  }
+
+  :-moz-placeholder {
+    color: $gray;
+  }
+
+}
+

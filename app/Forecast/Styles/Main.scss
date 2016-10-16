@@ -1,0 +1,49 @@
+$footHeight: 100px;
+
+* {
+  transition: all .1s ease-in;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  text-align: center;
+  // room for footer
+  margin-bottom: $footHeight;
+}
+
+.container-fluid {
+  padding: 0px;
+}
+
+.footer {
+  background-color: #2b2b2b;
+  bottom: 0;
+  color: white;
+  height: $footHeight;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+
+  span,
+  a {
+    color: white;
+  }
+
+  img {
+    height: 31px;
+    width: 31px;
+  }
+
+  li {
+    vertical-align: bottom;
+  }
+
+  ul {
+    padding-top: 10px;
+  }
+
+}

@@ -36,6 +36,7 @@ const renderPage = function (appHtml) {
         
         <div id="app">${appHtml}</div>
 
+        <script src="https://use.fontawesome.com/63d289309a.js"></script>
         <script src="/bundle.js"></script>
         </body>
     </html>
