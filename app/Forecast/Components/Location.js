@@ -10,12 +10,12 @@ const renderInput = (field) => {
       <div className="formError">
         {(isError) ? field.meta.error : null}
       </div>
-      <h1>What's the weather in&nbsp;
+      <h1>{"What's the weather in"}&nbsp;
         <input {...field.input} 
           type={field.type} 
           placeholder={field.placeholder} 
           className={(isError)?"inputError":null}
-          />&nbsp;?
+          />&nbsp;{"?"}
       </h1>
     </div>
   )

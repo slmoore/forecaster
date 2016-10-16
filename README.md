@@ -49,12 +49,11 @@ Using the Dark Sky API
 
 Extra
   - additional features beyond task
-    - status:
-      - location generated based on user input: complete
-      - added Alerts feature: complete
-      - started unit tests
-      - started server-side rendering
-      - started routing
+    - location generated based on user input: complete
+    - added Alerts feature: complete
+    - started unit tests
+    - started server-side rendering
+    - started routing
 
 ## To be continued:
   - write tests for async actions, reducers, components
