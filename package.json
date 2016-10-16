@@ -4,11 +4,11 @@
   "description": "Forecaster using Dark Sky API",
   "main": "index.js",
   "scripts": {
+    "dev": "webpack-dev-server --inline --hot --config webpack.dev.config.js --content-base dist --history-api-fallback",
     "test": "NODE_ENV=test mocha './app/**/*.spec.js' --compilers js:babel-core/register --reporter list",
     "test:watch": "npm test -- --watch",
     "cover": "nyc --reporter=html --reporter=text npm test",
-    "start": "webpack-dev-server --inline --hot --config webpack.dev.config.js --content-base dist --history-api-fallback",
-    "prod": "npm run build:client && npm run build:server && node server.bundle.js",
+    "start": "npm run build:client && npm run build:server && node server.bundle.js",
     "build:client": "webpack --config webpack.client.config.js",
     "build:server": "webpack --config webpack.server.config.js"
   },

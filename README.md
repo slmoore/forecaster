@@ -7,19 +7,17 @@
 
 ## Build Instructions
 
-  1. Download or clone repo: `git clone ...`
+  1. Download or clone repo: `git clone https://github.com/slmoore/forecaster.git`
   2. Sign up for [Dark Sky](https://developer.forecast.io/) and [Google Maps Geocode](https://developers.google.com/maps/documentation/geocoding/start) in order to get your personal API keys.
   3. Change to forecaster directory and install dependencies:
-    ```
-    cd path/to/forecaster
-    npm install
-    ```
+    - `cd path/to/forecaster`
+    - `npm install`
+
   4. Create a `.env` file in the root directory and paste in the following environment variables. Replace the values with your own:
-    ```
-    PORT=8080
-    GEOCODE=1234
-    DARK_SKY=5678
-    ```
+    - `PORT=8080`
+    - `GEOCODE=1234`
+    - `DARK_SKY=5678`
+
     - ***Unless port 8080 is already in use, it can be left as 8080.***
   5. You're done! So now you can run any of the following commands:
     - `npm start # run in development environment` (visit http://localhost:8080)
