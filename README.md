@@ -1,9 +1,9 @@
 
-Forecaster displays the weather conditions for the next five days and any alerts which appear.  Location Coordinates are retrieved using Google Maps Geocode API.  Weather data is pulled from the Dark Sky API.
+**Forecaster displays the weather conditions for the next five days and any alerts which appear.  Location Coordinates are retrieved using Google Maps Geocode API.  Weather data is pulled from the Dark Sky API.**
 
 ## Live Site
 
-[Live Forecaster]()
+[Live Forecaster](...)
 
 ## Build Instructions
 
