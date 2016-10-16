@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
 import ReactDOM, { render } from 'react-dom'
-const Skycons = require('skycons')(window)
 
+// used only for server-side bundling
+if (typeof window === 'undefined') {
+  global.window = {}
+}
+
+const Skycons = require('skycons')(window)
 
 const Alert = (props) => {
   const { title, uri } = props

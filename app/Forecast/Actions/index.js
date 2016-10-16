@@ -1,6 +1,11 @@
 import fetch from 'isomorphic-fetch'
 import store from '../../store'
 
+// used only for server-side bundling
+if (typeof window === 'undefined') {
+  global.window = {}
+}
+
 // Google Geocode API endpoint
 // https://maps.googleapis.com/maps/api/geocode/json?address=Seattle&key=[key]
 
