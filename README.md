@@ -33,7 +33,7 @@
   - react-router - maintaining routing within a single page application
   - sass - simplifies style over time
   - bootstrap - initial style
-  - mocha/chai/istanbul - unit testing (tests incomplete as of 10/16/16)
+  - mocha/chai/istanbul - unit testing (only partial testing as of 10/16/16)
   - webpack/babel - bundles project with babel allowing for ES6/JSX features, hot reloading in development, uglify tasks, sass css preprocessor tasks, and server-side rendering
 
 ## User Story:
