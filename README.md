@@ -25,7 +25,7 @@
 
   **This application accesses the environment variables using node, so it does not run statically.**
 
-## Technology used with reason:
+## Technology used with reasoning:
   - react - view framework to maintain display as state changes
   - redux - simplifies maintaining state as new features are added
   - react-router - maintaining routing within a single page application
