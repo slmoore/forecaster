@@ -1,7 +1,10 @@
 var webpack = require('webpack');
 var path = require('path');
 var fs = require('fs');
-require('dotenv').config();
+
+if (!process.env.GEOCODE) {
+  require('dotenv').config();
+}
 
 // server-side bundle
 

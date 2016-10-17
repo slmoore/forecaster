@@ -2,18 +2,11 @@
 import express from 'express'
 import path from 'path'
 import compression from 'compression'
-import dotenv from 'dotenv'
 // client-side
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { match, RouterContext } from 'react-router'
 import routes from './app/routes'
-
-// get environment variables
-
-if (!process.env.PORT) {
-  dotenv.config()
-}
 
 // setup express
 let app = express()

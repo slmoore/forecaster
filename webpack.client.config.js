@@ -1,5 +1,8 @@
 var webpack = require('webpack');
-require('dotenv').config();
+
+if (!process.env.GEOCODE) {
+  require('dotenv').config();
+}
 
 // client-side bundle
 
