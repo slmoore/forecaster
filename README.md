@@ -22,6 +22,7 @@
     - `npm test # run unit tests`
     - `npm run cover # run unit test coverage report` (html version generated inside /coverage/index.html)
     - `npm start # run from node server` (visit http://localhost:8080)
+    - `npm run build:all # build server and client bundles`
 
   **This application accesses the environment variables using node, so it does not run statically.**
 
