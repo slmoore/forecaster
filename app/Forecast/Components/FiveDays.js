@@ -50,7 +50,7 @@ const calendarDate = (date) => {
   )
 }
 
-const Day = (props) => {
+const DayPartial = (props) => {
   const { time, summary, icon, temperatureMin, temperatureMax } = props
   let date = new Date(time*1000)
   return (
@@ -99,7 +99,7 @@ const FiveDays = (props) => {
           <h2>Five Day Forecast</h2>
           <ul className="list-inline">
             {days.slice(0,5).map((day, index) => {
-                return <li key={index}><Day {...day} /></li>
+                return <li key={index}><DayPartial {...day} /></li>
              })}
           </ul>
         </div>

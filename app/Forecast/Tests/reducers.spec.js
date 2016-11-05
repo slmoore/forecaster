@@ -1,4 +1,5 @@
 import { expect } from 'chai'
-import * as Reducers from '../Reducers/index'
+import * as FiveDayReducer from '../Reducers/FiveDayReducer'
+import * as DayReducer from '../Reducers/DayReducer'
 
 // imported so that test coverage is more accurate

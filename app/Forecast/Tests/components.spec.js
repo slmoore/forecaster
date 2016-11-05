@@ -1,8 +1,7 @@
 import { expect } from 'chai'
 import * as FiveDays from '../Components/FiveDays'
 import * as Footer from '../Components/Footer'
-import * as Home from '../Components/Home'
 import * as Location from '../Components/Location'
-import * as Containers from '../Containers/Forecast'
+import * as Home from '../Containers/Home'
 
 // imported so that test coverage is more accurate

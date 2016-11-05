@@ -1,19 +1,18 @@
 import * as Actions from '../Actions/index'
 
-export const initForecast = {
-  first: true,
+export const initDay = {
   isFetching: false,
+  lat: "",
+  lng: "",
   formatted_address: "",
-  current: {},
-  days: [],
-  alerts: [],
+  day: {},
   error: {}
 }
 
-export const forecast = (state = initForecast, action) => {
+export const day = (state = initDay, action) => {
   let newState = {}
   switch (action.type) {
-    case Actions.GET_COORDINATES:
+/*    case Actions.GET_COORDINATES:
       newState = Object.assign({},state,initForecast)
       return Object.assign({},state,action.payload)
     case Actions.PARSE_COORDINATES:
@@ -24,10 +23,10 @@ export const forecast = (state = initForecast, action) => {
       return Object.assign({},state,action.payload)
     case Actions.FETCH_ERROR:
       newState = Object.assign({},state,initForecast)
-      return Object.assign({},state,action.payload)
+      return Object.assign({},state,action.payload)*/
     default:
       return state
   }
 }
 
-export default forecast
+export default day

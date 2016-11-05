@@ -38,6 +38,10 @@ export const parseCoordinates = (coordinates) => {
   }
 }
 
+// push new route programmatically after forecast is processed. - incomplete
+// perhaps make another thunk to dispatch parseForecast as a promise and then push the route when finished.
+
+
 // send the forecast
 export const PARSE_FORECAST = 'PARSE_FORECAST'
 export const parseForecast = (forecast) => {
@@ -46,6 +50,18 @@ export const parseForecast = (forecast) => {
     payload: {
       isFetching: false,
       ...forecast
+    }
+  }
+}
+
+// send the day
+export const PARSE_DAY = 'PARSE_DAY'
+export const parseDay = (day) => {
+  return {
+    type: PARSE_DAY,
+    payload: {
+      isFetching: false,
+      ...day
     }
   }
 }
@@ -77,11 +93,6 @@ export const coordinatesRequest = (address = 'Seattle') => {
       .then(response => response.json())
       .then(data => {
         let coordinates = {}
-        // default coordinates (Seattle)
-        coordinates.lat = 47.6062095
-        coordinates.lng = -122.3320708
-        coordinates.fa = "Seattle, WA"
-
         try {
           // return the first possible coordinates from the list
           coordinates.lat = data.results[0].geometry.location.lat
