@@ -1,12 +1,8 @@
 import React, { Component } from 'react'
 import ReactDOM, { render } from 'react-dom'
-
-// used only for server-side bundling
-if (typeof window === 'undefined') {
-  global.window = {}
-}
-
-const Skycons = require('skycons')(window)
+import { Link } from 'react-router'
+import { calendarDate } from '../Utilities/index'
+import Icon from './Icons'
 
 const Alert = (props) => {
   const { title, uri } = props
@@ -20,52 +16,23 @@ const Alert = (props) => {
   )
 }
 
-class Icon extends Component {
-  constructor (props) {
-    super(props)
-    this.handleCanvas = this.handleCanvas.bind(this)
-  }
-
-  // react ref callback to access canvas
-  handleCanvas (canvas) {
-    this.skycons = new Skycons({'color': 'black'})
-    this.skycons.add(canvas, this.props.icon)
-    this.skycons.play()
-  }
-
-  render () {
-    return (
-      <canvas ref={this.handleCanvas} style={{'width':'64px', 'height':'32px'}} ></canvas>
-    )
-  }
-}
-
-// utility to improve date string
-const calendarDate = (date) => {
-  // Sat Oct 15 2016
-  const dayNames = ['Sun','Mon','Tues','Weds','Thurs','Fri','Sat']
-  const monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
-  return (
-    `${dayNames[date.getDay()]} ${monthNames[date.getMonth()]} ${date.getDate()} ${date.getFullYear()}`
-  )
-}
-
-const DayPartial = (props) => {
-  const { time, summary, icon, temperatureMin, temperatureMax } = props
-  let date = new Date(time*1000)
+const DayLink = (props) => {
+  const { time, summary, icon, temperatureMin, temperatureMax, dayID, requested } = props
   return (
     <div className="day">
-      <div className="dayDate">{calendarDate(date)}</div>
-      <Icon icon={icon} />
-      <div>{summary}</div>
-      <div>Min: {Math.round(temperatureMin)} &#8457;</div>
-      <div>Max: {Math.round(temperatureMax)} &#8457;</div>
+      <Link to={`/day/${requested}/${dayID}`}>
+        <div className="dayDate">{calendarDate(time)}</div>
+        <Icon icon={icon} />
+        <div>{summary}</div>
+        <div>Min: {Math.round(temperatureMin)} &#8457;</div>
+        <div>Max: {Math.round(temperatureMax)} &#8457;</div>
+      </Link>
     </div>
   )
 }
 
 const FiveDays = (props) => {
-  const { first, isFetching, days, formatted_address, alerts } = props
+  const { first, isFetching, days, requested, formatted_address, alerts } = props
   const mapParameters = formatted_address.replace(/\s/g,'+')
   const mapLink = `https://www.google.com/maps/place/${mapParameters}`
 
@@ -99,7 +66,7 @@ const FiveDays = (props) => {
           <h2>Five Day Forecast</h2>
           <ul className="list-inline">
             {days.slice(0,5).map((day, index) => {
-                return <li key={index}><DayPartial {...day} /></li>
+                return <li key={index}><DayLink {...day} dayID={index} requested={requested} /></li>
              })}
           </ul>
         </div>

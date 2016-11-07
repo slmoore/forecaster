@@ -11,6 +11,11 @@ const fivedaysDirect = (props) => {
   store.dispatch(coordinatesRequest(props.params.requested))
 }
 
+const dayDirect = (props) => {
+  // dispatch direct day request
+  // handled just like the fivedays request just pass day the right props.
+}
+
 module.exports = (
   <Route path="/" component={Home}>
     {/*Handled as Children inside of the Home Container*/}

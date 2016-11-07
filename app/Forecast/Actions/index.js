@@ -39,10 +39,6 @@ export const parseCoordinates = (coordinates) => {
   }
 }
 
-// push new route programmatically after forecast is processed. - incomplete
-// perhaps make another thunk to dispatch parseForecast as a promise and then push the route when finished.
-
-
 // send the forecast
 export const PARSE_FORECAST = 'PARSE_FORECAST'
 export const parseForecast = (forecast) => {
