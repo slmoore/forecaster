@@ -17,12 +17,13 @@ const GEOCODE = process.env.GEOCODE
 
 // notify user that fetching is happening
 export const GET_COORDINATES = 'GET_COORDINATES'
-export const getCoordinates = () => {
+export const getCoordinates = (address) => {
   return {
     type: GET_COORDINATES,
     payload: {
       first: false,
-      isFetching: true
+      isFetching: true,
+      requested: address
     }
   }
 }
@@ -81,12 +82,23 @@ export const fetchError = (error) => {
 // fetch location coordinates
 export const coordinatesRequest = (address = 'Seattle') => {
   return (dispatch,getState) => {
-    // notify user that requests are running
-    dispatch(getCoordinates())
-
     if (address.location) {
       address = address.location
     }
+
+    if (getState().forecast.formatted_address && 
+        address === getState().forecast.requested) {
+      // same request - skip all api requests
+      dispatch(parseForecast({
+        current: getState().forecast.current,
+        days: getState().forecast.days,
+        alerts: getState().forecast.alerts
+      }))
+      return new Promise((resolve)=>resolve("Repeated Request"))
+    }
+
+    // notify user that requests are running
+    dispatch(getCoordinates(address))
 
     return (
       fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${GEOCODE}`)
@@ -98,17 +110,8 @@ export const coordinatesRequest = (address = 'Seattle') => {
           coordinates.lat = data.results[0].geometry.location.lat
           coordinates.lng = data.results[0].geometry.location.lng
           coordinates.fa = data.results[0].formatted_address
-          // same address - skip weather request
-          if (coordinates.fa === getState().forecast.formatted_address) {
-            dispatch(parseForecast({
-              current: getState().forecast.current,
-              days: getState().forecast.days,
-              alerts: getState().forecast.alerts
-            }))
-          } else {
-            dispatch(parseCoordinates(coordinates))
-            dispatch(weatherRequest(coordinates))
-          }
+          dispatch(parseCoordinates(coordinates))
+          dispatch(weatherRequest(coordinates))
         } catch(e) {
           console.log("Longitude and latitude not found.")
           dispatch(fetchError(e))

@@ -2,8 +2,7 @@ import * as Actions from '../Actions/index'
 
 export const initDay = {
   isFetching: false,
-  lat: "",
-  lng: "",
+  requested: "",
   formatted_address: "",
   day: {},
   error: {}

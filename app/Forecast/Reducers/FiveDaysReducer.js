@@ -3,8 +3,7 @@ import * as Actions from '../Actions/index'
 export const initForecast = {
   first: true,
   isFetching: false,
-  lat: "",
-  lng: "",
+  requested: "",
   formatted_address: "",
   current: {},
   days: [],
@@ -17,18 +16,16 @@ export const forecast = (state = initForecast, action) => {
   switch (action.type) {
     case Actions.GET_COORDINATES:
       newState = Object.assign({},state,initForecast)
-      return Object.assign({},state,action.payload)
+      return Object.assign({},newState,action.payload)
     case Actions.PARSE_COORDINATES:
       return Object.assign({},state,{
-        lat: action.payload.lat,
-        lng: action.payload.lng,
         formatted_address: action.payload.fa
       })
     case Actions.PARSE_FORECAST:
       return Object.assign({},state,action.payload)
     case Actions.FETCH_ERROR:
       newState = Object.assign({},state,initForecast)
-      return Object.assign({},state,action.payload)
+      return Object.assign({},newState,action.payload)
     default:
       return state
   }

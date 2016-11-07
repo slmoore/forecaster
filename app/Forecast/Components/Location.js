@@ -42,6 +42,7 @@ class Location extends Component {
 
   handleDispatch (formValues) {
     this.props.dispatch(coordinatesRequest(formValues))
+    this.context.router.push(`/fivedays/${formValues.location}`)
     document.activeElement.blur()
   }
 
@@ -60,6 +61,10 @@ class Location extends Component {
       </form>
     )
   }
+}
+
+Location.contextTypes = {
+  router: React.PropTypes.object
 }
 
 export default reduxForm({
