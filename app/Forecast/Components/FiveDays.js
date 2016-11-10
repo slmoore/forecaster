@@ -7,12 +7,12 @@ import { Processing, Unknown } from './Processing'
 import Alerts from './Alerts'
 
 const DayLink = (props) => {
-  const { time, summary, icon, temperatureMin, temperatureMax, dayID, requested } = props
+  const { time, summary, icon, temperatureMin, temperatureMax, dayID, requested, params } = props
   return (
     <div className="day">
       <Link to={`/day/${requested}/${dayID}`}>
         <div className="dayDate">{calendarDate(time)}</div>
-        <Icon icon={icon} />
+        <Icon icon={icon} isDay={(params.dayID !== undefined)?true:false} />
         <div>{summary}</div>
         <div>Min: {Math.round(temperatureMin)} &#8457;</div>
         <div>Max: {Math.round(temperatureMax)} &#8457;</div>
@@ -22,7 +22,7 @@ const DayLink = (props) => {
 }
 
 const FiveDays = (props) => {
-  const { first, isFetching, days, requested, formatted_address, alerts } = props
+  const { first, isFetching, days, requested, formatted_address, alerts, params } = props
   const mapParameters = formatted_address.replace(/\s/g,'+')
   const mapLink = `https://www.google.com/maps/place/${mapParameters}`
 
@@ -49,7 +49,7 @@ const FiveDays = (props) => {
         <h2>Five Day Forecast</h2>
         <ul className="list-inline">
           {days.slice(0,5).map((day, index) => {
-              return <li key={index}><DayLink {...day} dayID={index} requested={requested} /></li>
+              return <li key={index}><DayLink {...day} dayID={index} requested={requested} params={params} /></li>
            })}
         </ul>
       </div>

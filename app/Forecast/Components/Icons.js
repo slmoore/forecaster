@@ -23,7 +23,7 @@ class Icon extends Component {
 
   render () {
     return (
-      <canvas ref={this.handleCanvas} style={{'width':'64px', 'height':'32px'}} ></canvas>
+      <canvas ref={this.handleCanvas} className="icon"></canvas>
     )
   }
 }

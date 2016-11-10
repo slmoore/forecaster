@@ -1,0 +1,18 @@
+$small-width: 64;
+$small-height: 32;
+$large-width: $small-width * 4;
+$large-height: $small-height * 4;
+
+.fiveBlock {
+  .icon {
+    width: $small-width + px;
+    height: $small-height + px;
+  }
+}
+
+.dayBlock {
+  .icon {
+    width: $large-width + px;
+    height: $large-height + px;
+  }
+}

@@ -14,7 +14,7 @@ class Day extends Component {
   dataDisplay (data) {
     let list = [], i = 0
     if (data.icon) {
-      list.push(<div key={i}><Icon icon={data.icon} /></div>)
+      list.push(<div key={i}><Icon icon={data.icon} isDay={(this.props.params.dayID !== undefined)?true:false} /></div>)
       i++
     }
     for (let item in data) {
@@ -44,7 +44,7 @@ class Day extends Component {
       <div className="forecastBlock fadeIn">
         <Link to={`/fivedays/${params.requested}`}>Five Day Forecast</Link>
         <h1>{formatted_address}</h1>
-        <div>{this.dataDisplay(data)}</div>
+        <div className="dayBlock">{this.dataDisplay(data)}</div>
       </div>
     )
   }

@@ -9,6 +9,7 @@ import './Forecast/Styles/Main.scss'
 import './Forecast/Styles/Location.scss'
 import './Forecast/Styles/FiveDays.scss'
 import './Forecast/Styles/Responsive.scss'
+import './Forecast/Styles/Icons.scss'
 
 render(
   <Provider store={store}>
