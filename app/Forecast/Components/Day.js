@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 import { Link } from 'react-router'
 import { forecastConverter } from '../Utilities'
 import Icon from './Icons'
-
+import { Processing, Unknown } from './Processing'
 
 class Day extends Component {
   constructor (props) {
@@ -27,12 +27,23 @@ class Day extends Component {
   }
 
   render () {
-    const data = this.props.days[this.props.params.dayID]
-    // let date = new Date(time*1000)
+    const { isFetching, days, formatted_address, params } = this.props
+    const data = days[params.dayID]
+
+    // fetching data
+    if (isFetching) {
+      return <Processing />
+    }
+
+    // unknown location
+    if (days.length === 0) {
+      return <Unknown />
+    }
+
     return (
-      <div className="fadeIn">
-        <Link to={`/fivedays/${this.props.params.requested}`}>Five Days Forecast</Link>
-        <h1>{this.props.formatted_address}</h1>
+      <div className="forecastBlock fadeIn">
+        <Link to={`/fivedays/${params.requested}`}>Five Day Forecast</Link>
+        <h1>{formatted_address}</h1>
         <div>{this.dataDisplay(data)}</div>
       </div>
     )

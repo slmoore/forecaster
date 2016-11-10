@@ -79,6 +79,7 @@ export const fetchError = (error) => {
 export const coordinatesRequest = (address = 'Seattle') => {
   return (dispatch,getState) => {
     if (address.location) {
+      // form address
       address = address.location
     }
 

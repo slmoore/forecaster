@@ -6,20 +6,15 @@ import Day from './Forecast/Components/Day'
 import store from './store'
 import { coordinatesRequest } from './Forecast/Actions/index'
 
-const fivedaysDirect = (props) => {
+const forecastDirect = (props) => {
   // `this` === Route
   store.dispatch(coordinatesRequest(props.params.requested))
 }
 
-const dayDirect = (props) => {
-  // dispatch direct day request
-  // handled just like the fivedays request just pass day the right props.
-}
-
 module.exports = (
   <Route path="/" component={Home}>
-    {/*Handled as Children inside of the Home Container*/}
-    <Route path="fivedays/:requested" component={FiveDays} onEnter={fivedaysDirect} />
-    <Route path="day/:requested/:dayID" component={Day} />
+    {/* Handled as Children inside of the Home Container */}
+    <Route path="fivedays/:requested" component={FiveDays} onEnter={forecastDirect} />
+    <Route path="day/:requested/:dayID" component={Day} onEnter={forecastDirect} />
   </Route>
 )
