@@ -11,32 +11,40 @@ export const calendarDate = (time) => {
   )
 }
 
+export const standardTime = (time) => {
+  let date = new Date(time*1000)
+  let hours = (date.getHours() === 0) ? 12 : date.getHours()
+  let minutes = date.getMinutes().toString()
+  minutes = (minutes.length > 1) ? minutes : "0" + minutes
+  return (hours > 12) ? hours - 12 +":"+ minutes + " PM" : hours +":"+ minutes + " AM"
+}
+
 export const forecastConverter = {
-  time: (value) => {return calendarDate(value)},
-  summary: (value) => value,
-  sunriseTime: (value) => {return calendarDate(value)},
-  sunsetTime: (value) => {return calendarDate(value)},
-  moonPhase: (value) => value,
-  precipIntensity: (value) => value,
-  precipIntensityMax: (value) => value,
-  precipIntensityMaxTime: (value) => {return calendarDate(value)},
-  precipProbability: (value) => value,
-  precipType: (value) => value,
-  temperatureMin: (value) => <span>{value}&#8457;</span>,
-  temperatureMinTime: (value) => {return calendarDate(value)},
-  temperatureMax: (value) => <span>{value}&#8457;</span>,
-  temperatureMaxTime: (value) => {return calendarDate(value)},
-  apparentTemperatureMin: (value) => <span>{value}&#8457;</span>,
-  apparentTemperatureMinTime: (value) => {return calendarDate(value)},
-  apparentTemperatureMax: (value) => <span>{value}&#8457;</span>,
-  apparentTemperatureMaxTime: (value) => {return calendarDate(value)},
-  dewPoint: (value) => value,
-  humidity: (value) => value,
-  windSpeed: (value) => value,
-  windBearing: (value) => value,
-  visibility: (value) => value,
-  cloudCover: (value) => value,
-  pressure: (value) => value,
-  ozone: (value) => value
+  time: {name: "Date", format: (value) => {return calendarDate(value)} },
+  summary: {name: "Summary", format: (value) => value },
+  sunriseTime: {name: "Sunrise", format: (value) => {return standardTime(value)} },
+  sunsetTime: {name: "Sunset", format: (value) => {return standardTime(value)} },
+  moonPhase: {name: "Moon Phase", format: (value) => value },
+  precipIntensity: {name: "Precipitation Intensity", format: (value) => value },
+  precipIntensityMax: {name: "Max Precipitation", format: (value) => value },
+  precipIntensityMaxTime: {name: "Max Precipitation Time", format: (value) => {return standardTime(value)} },
+  precipProbability: {name: "Precipitation Probability", format: (value) => value },
+  precipType: {name: "Precipitation Type", format: (value) => value },
+  temperatureMin: {name: "Min Temperature", format: (value) => <span>{value}&#8457;</span> },
+  temperatureMinTime: {name: "Min Temperature Time", format: (value) => {return standardTime(value)} },
+  temperatureMax: {name: "Max Temperature", format: (value) => <span>{value}&#8457;</span> },
+  temperatureMaxTime: {name: "Max Temperature Time", format: (value) => {return standardTime(value)} },
+  apparentTemperatureMin: {name: "Apparent Min Temperature", format: (value) => <span>{value}&#8457;</span> },
+  apparentTemperatureMinTime: {name: "Apparent Min Temperature Time", format: (value) => {return standardTime(value)} },
+  apparentTemperatureMax: {name: "Apparent Max Temperature", format: (value) => <span>{value}&#8457;</span> },
+  apparentTemperatureMaxTime: {name: "Apparent Max Temperature Time", format: (value) => {return standardTime(value)} },
+  dewPoint: {name: "Dew Point", format: (value) => value },
+  humidity: {name: "Humidity", format: (value) => value },
+  windSpeed: {name: "Wind Speed", format: (value) => value },
+  windBearing: {name: "Wind Bearing", format: (value) => value },
+  visibility: {name: "Visibility", format: (value) => value },
+  cloudCover: {name: "Cloud Cover", format: (value) => value },
+  pressure: {name: "Pressure", format: (value) => value },
+  ozone: {name: "Ozone", format: (value) => value }
 }
 

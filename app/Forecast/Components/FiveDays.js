@@ -5,6 +5,7 @@ import { calendarDate } from '../Utilities/index'
 import Icon from './Icons'
 import { Processing, Unknown } from './Processing'
 import Alerts from './Alerts'
+import AddressLink from './AddressLink'
 
 const DayLink = (props) => {
   const { time, summary, icon, temperatureMin, temperatureMax, dayID, requested, params } = props
@@ -23,8 +24,7 @@ const DayLink = (props) => {
 
 const FiveDays = (props) => {
   const { first, isFetching, days, requested, formatted_address, alerts, params } = props
-  const mapParameters = formatted_address.replace(/\s/g,'+')
-  const mapLink = `https://www.google.com/maps/place/${mapParameters}`
+
 
   // display nothing on load
   if (first) {
@@ -44,7 +44,7 @@ const FiveDays = (props) => {
   // found weather
   return (
     <div className="forecastBlock fadeIn">
-      <h1 className="address"><a href={mapLink} target="_blank">{formatted_address}</a></h1>
+      <h1 className="address"><AddressLink formatted_address={formatted_address} /></h1>
       <div className="fiveBlock">
         <h2>Five Day Forecast</h2>
         <ul className="list-inline">

@@ -10,6 +10,7 @@ import './Forecast/Styles/Location.scss'
 import './Forecast/Styles/FiveDays.scss'
 import './Forecast/Styles/Responsive.scss'
 import './Forecast/Styles/Icons.scss'
+import './Forecast/Styles/Day.scss'
 
 render(
   <Provider store={store}>
