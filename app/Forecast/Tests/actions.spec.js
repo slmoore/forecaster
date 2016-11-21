@@ -19,12 +19,13 @@ const forecast = {
 
 describe('actions - forecast - getCoordinates:', function() {
   it('should return the correct action object', function() {
-    const actual = Actions.getCoordinates()
+    const actual = Actions.getCoordinates('Seattle')
     const expected = {
       type: Actions.GET_COORDINATES,
       payload: {
         first: false,
-        isFetching: true
+        isFetching: true,
+        requested: 'Seattle'
       }
     }
     expect(actual).to.deep.equal(expected)
