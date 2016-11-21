@@ -50,10 +50,8 @@ Extra
     - added Alerts feature: complete
     - started unit tests
     - started server-side rendering
-    - started routing
 
 ## To be continued:
   - write tests for async actions, reducers, components
-  - add routing for specific days/alerts
   - improve server-side rendering
 
