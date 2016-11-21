@@ -34,6 +34,7 @@
   - bootstrap - initial style
   - mocha/chai/istanbul - unit testing (only partial testing as of 10/16/16)
   - webpack/babel - bundles project with babel allowing for ES6/JSX features, hot reloading in development, uglify tasks, sass css preprocessor tasks, and server-side rendering
+  - heroku - quick deployment and the reason that the bundle is included in the repo (saves heroku the time)
 
 ## User Story:
 
