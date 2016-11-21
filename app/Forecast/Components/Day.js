@@ -14,7 +14,8 @@ class Day extends Component {
 
   dataDisplay (data) {
     let list = [], i = 0
-    list.push(<h2>{calendarDate(data.time)}</h2>)
+    list.push(<h2 key={i}>{calendarDate(data.time)}</h2>)
+    i++
     if (data.icon) {
       list.push(<div key={i}><Icon icon={data.icon} isDay={(this.props.params.dayID !== undefined)?true:false} /></div>)
       i++
@@ -22,11 +23,14 @@ class Day extends Component {
     for (let item in data) {
       if (item === "summary") {
         list.push(<div key={i} className="summary">{forecastConverter[item].format(data[item])}</div>)
-        i++
       } else if (item !== "icon" && item !== "time") {
-        list.push(<div key={i}>{forecastConverter[item].name}: {forecastConverter[item].format(data[item])}</div>)
-        i++
+        try {
+          list.push(<div key={i}>{forecastConverter[item].name}: {forecastConverter[item].format(data[item])}</div>)
+        } catch(e) {
+          console.log(`${item} is unknown`)
+        }
       }
+      i++
     }
     return list
   }

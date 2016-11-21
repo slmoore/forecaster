@@ -29,6 +29,7 @@ export const forecastConverter = {
   precipIntensityMax: {name: "Max Precipitation", format: (value) => value },
   precipIntensityMaxTime: {name: "Max Precipitation Time", format: (value) => {return standardTime(value)} },
   precipProbability: {name: "Precipitation Probability", format: (value) => value },
+  precipAccumulation: {name: "Precipitation Accumulation", format: (value) => `${value} in.` },
   precipType: {name: "Precipitation Type", format: (value) => value },
   temperatureMin: {name: "Min Temperature", format: (value) => <span>{value}&#8457;</span> },
   temperatureMinTime: {name: "Min Temperature Time", format: (value) => {return standardTime(value)} },
