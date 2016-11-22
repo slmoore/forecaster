@@ -3,11 +3,19 @@ import thunkMiddleware from 'redux-thunk'
 import createLogger from 'redux-logger'
 import rootReducer from './combinedReducers'
 
+// used only for server-side bundling
+if (typeof window === 'undefined') {
+  global.window = {}
+}
+
+// get the state from the server first
+const preloadedState = window.__PRELOADED_STATE__
+
 /*
   Store Config 
 */
 
-const configureStore = function (preloadedState) {
+export const configureStore = function (preloadedState = {}) {
   
   if (process.env.NODE_ENV === 'production' || 
       process.env.NODE_ENV === 'test') {
@@ -31,6 +39,6 @@ const configureStore = function (preloadedState) {
   }
 }
 
-const store = configureStore()
+const store = configureStore(preloadedState)
 
 export default store
